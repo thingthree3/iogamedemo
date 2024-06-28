@@ -1,0 +1,22 @@
+{
+  "name": "skibidi-toilet",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --inspect --trace-warnings --watch-path=./ --inspect-brk index.js",
+    "start": "node index.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.4.5"
+  }
+}
