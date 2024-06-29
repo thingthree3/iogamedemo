@@ -40,15 +40,6 @@ export class Vector{
             return new Vector(this.x/this.mag(), this.y/this.mag());
         }
     }
-
-    drawVec(start_x, start_y, n, color){
-        ctx.beginPath();
-        ctx.moveTo(start_x, start_y);
-        ctx.lineTo(start_x + this.x * n, start_y + this.y * n);
-        ctx.strokeStyle = color;
-        ctx.stroke();
-        ctx.closePath();
-    }
     
     static dot(v1, v2){
         return v1.x*v2.x + v1.y*v2.y;
@@ -99,20 +90,6 @@ class Line{
         this.pos = new Vector((this.vertex[0].x+this.vertex[1].x)/2, (this.vertex[0].y+this.vertex[1].y)/2);
     }
 
-    draw(color){
-        ctx.beginPath();
-        ctx.moveTo(this.vertex[0].x, this.vertex[0].y);
-        ctx.lineTo(this.vertex[1].x, this.vertex[1].y);
-        if (color === ""){
-            ctx.strokeStyle = "black";
-            ctx.stroke();
-        } else {
-            ctx.strokeStyle = color;
-            ctx.stroke();
-        }
-        ctx.strokeStyle = "";
-        ctx.closePath();
-    }
 }
 
 class Circle{
@@ -120,20 +97,6 @@ class Circle{
         this.vertex = [];
         this.pos = new Vector(x, y);
         this.r = r;
-    }
-
-    draw(color){
-        ctx.beginPath();
-        ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2*Math.PI);
-        if (color === ""){
-            ctx.strokeStyle = "black";
-            ctx.stroke();
-        } else {
-            ctx.fillStyle = color;
-            ctx.fill();
-        }
-        ctx.fillStyle = "";
-        ctx.closePath();
     }
 }
 
@@ -151,24 +114,6 @@ class Rectangle{
         this.pos = this.vertex[0].add(this.dir.mult(this.length/2)).add(this.dir.normal().mult(this.width/2));
         this.angle = 0;
         this.rotMat = new Matrix(2,2);
-    }
-
-    draw(color){
-        ctx.beginPath();
-        ctx.moveTo(this.vertex[0].x, this.vertex[0].y);
-        ctx.lineTo(this.vertex[1].x, this.vertex[1].y);
-        ctx.lineTo(this.vertex[2].x, this.vertex[2].y);
-        ctx.lineTo(this.vertex[3].x, this.vertex[3].y);
-        ctx.lineTo(this.vertex[0].x, this.vertex[0].y);
-        if (color === ""){
-            ctx.strokeStyle = "black";
-            ctx.stroke();
-        } else {
-            ctx.fillStyle = color;
-            ctx.fill();
-        }
-        ctx.fillStyle = "";
-        ctx.closePath();
     }
 
     getVertices(angle){
@@ -196,23 +141,6 @@ class Triangle{
         this.refDiam[2] = this.vertex[2].subtr(this.pos);
         this.angle = 0;
         this.rotMat = new Matrix(2,2);
-    }
-
-    draw(color){
-        ctx.beginPath();
-        ctx.moveTo(this.vertex[0].x, this.vertex[0].y);
-        ctx.lineTo(this.vertex[1].x, this.vertex[1].y);
-        ctx.lineTo(this.vertex[2].x, this.vertex[2].y);
-        ctx.lineTo(this.vertex[0].x, this.vertex[0].y);
-        if (color === ""){
-            ctx.strokeStyle = "black";
-            ctx.stroke();
-        } else {
-            ctx.fillStyle = color;
-            ctx.fill();
-        }
-        ctx.fillStyle = "";
-        ctx.closePath();
     }
 
     getVertices(angle){
@@ -609,8 +537,6 @@ function sat(o1, o2){
     };
 
     let contactVertex = projShapeOntoAxis(smallestAxis, vertexObj).collVertex;
-    //smallestAxis.drawVec(contactVertex.x, contactVertex.y, minOverlap, "blue");
-
     if(vertexObj === o2){
         smallestAxis = smallestAxis.mult(-1);
     }

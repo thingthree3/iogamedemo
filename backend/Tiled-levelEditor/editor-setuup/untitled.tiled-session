@@ -1,0 +1,115 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/map.tmj",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Fences.tsj": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Grass.tsj": {
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Hills.tsj": {
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/House Decoration.tsj": {
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/House.tsj": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Objects.tsj": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Paths.tsj": {
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Plant Decoration.tsj": {
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Water.tsj": {
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/interaction.tsj": {
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/map.tmj": {
+            "scale": 0.75,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 482.6666666666667,
+                "y": 1730.6666666666665
+            }
+        },
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 576,
+                "y": 650
+            }
+        },
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj#hi": {
+            "dynamicWrapping": true
+        },
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj#poooops": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj#tile_532": {
+            "dynamicWrapping": false
+        },
+        "untitled.tmx": {
+            "expandedGroupLayers": [
+                7
+            ],
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 697,
+                "y": 1025
+            }
+        },
+        "untitled.tmx#poooops": {
+            "scaleInDock": 0.5
+        }
+    },
+    "last.exportedFilePath": "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor",
+    "last.imagePath": "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/tilesets",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "map.width": 20,
+    "openFiles": [
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/map.tmj",
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Objects.tsj"
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Objects.tsj",
+        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/map.tmj",
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj",
+        "untitled.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.spacing": 10,
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    },
+    "tileset.type": 0
+}

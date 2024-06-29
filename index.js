@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { game, server } from "./backend/server/server.js"
 
 dotenv.config();
-const debug = process.env.USER.toLowerCase() === 'dev';
+const debug = process.env.USER?.toLowerCase() === 'dev';
 const port = process.env.PORT || 3000;
 
 if (debug) console.log("Running in debug mode");

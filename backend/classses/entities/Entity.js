@@ -1,6 +1,7 @@
 import { Body } from "../../utils/physics.js";
 import LinkedList from "../../utils/LinkedList.js";
 
+/**@abstract */
 export default class Entity {
     // /**@type {LinkedList<Entity>} */
     // static Entities = new LinkedList();
