@@ -33,7 +33,9 @@ const drawPlayers = function(ctx, game) {
  * @param {number} deltaTime
  */
 const render = function(ctx, game, deltaTime) {
+    game.draw(ctx);
     drawPlayers(ctx, game);
+
 }
 
 export default render;

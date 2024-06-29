@@ -10,7 +10,19 @@ export default class Game {
             y: 0,
         }
     };
-    constructor(){
+    /**
+     * 
+     * @param {{[key: string]: HTMLImageElement]}} imageData 
+     */
+    constructor(imageData){
+        this.imageData = imageData;
+    }
 
+    /**
+     * 
+     * @param {CanvasRenderingContext2D} ctx 
+     */
+    draw(ctx){
+        ctx.drawImage(this.imageData['background'], 0, 0);
     }
 };

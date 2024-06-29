@@ -14,15 +14,15 @@ server.listen(port, () => {
   game.start();
 });
 
-tmx.parseFile("./backend/Tiled-levelEditor/level-data/demoLevel.tmx", function(err, map) {
-  if (err) {
-    if(debug)
-        throw err;
-    console.log(err);
-    return;
-  }
-    console.log(map.layers.find(layer => layer.name === "entities"));
-});
+// tmx.parseFile("./backend/Tiled-levelEditor/level-data/demoLevel.tmx", function(err, map) {
+//   if (err) {
+//     if(debug)
+//         throw err;
+//     console.log(err);
+//     return;
+//   }
+//     console.log(map.layers.find(layer => layer.name === "entities"));
+// });
 
 // ---------- Commands ----------
 process.stdin.resume();
