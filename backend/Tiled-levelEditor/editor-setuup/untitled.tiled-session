@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/map.tmj",
+    "activeFile": "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/demoLevel.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -48,18 +48,32 @@
         },
         "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/map.tmj": {
             "scale": 0.75,
-            "selectedLayer": 5,
+            "selectedLayer": 13,
             "viewCenter": {
-                "x": 482,
-                "y": 1729.3333333333333
+                "x": 990,
+                "y": 1324
             }
         },
-        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj": {
-            "scale": 0.5,
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/demoLevel.tmx": {
+            "scale": 0.32359375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 576,
-                "y": 650
+                "x": 641.2361178174795,
+                "y": 488.266537904394
+            }
+        },
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/demoLevel.tmx#poooops": {
+            "scaleInDock": 1
+        },
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj": {
+            "expandedGroupLayers": [
+                7
+            ],
+            "scale": 0.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 668,
+                "y": 639
             }
         },
         "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj#hi": {
@@ -67,7 +81,7 @@
         },
         "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj#poooops": {
             "dynamicWrapping": false,
-            "scaleInDock": 1
+            "scaleInDock": 0.5
         },
         "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj#tile_532": {
             "dynamicWrapping": false
@@ -95,14 +109,15 @@
     "map.tileWidth": 64,
     "map.width": 20,
     "openFiles": [
-        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/map.tmj",
-        "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Objects.tsj"
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj",
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/demoLevel.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj",
+        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/demoLevel.tmx",
         "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/Tilesets/Objects.tsj",
         "C:/Users/user/Documents/coding_projects/java_projects/famer2/src/main/resources/data/map.tmj",
-        "C:/Users/user/Documents/coding_projects/javascript_projects/game-like/iogame/iogamedemo/backend/Tiled-levelEditor/level-data/untitled.tmj",
         "untitled.tmx"
     ],
     "tileset.embedInMap": true,

@@ -379,6 +379,18 @@ class Capsule extends Body{
     }
 }
 
+class PlayerBody extends Body {
+    constructor(x, y, r, m){
+        super();
+        this.comp = [new Circle(x, y, r), new Circle(x, y, r / 4), new Circle(x, y, r / 4)];
+        this.pos = this.comp[0].pos;
+        this.m = m;
+        this.inv_m = this.m === 0 ? 0 : 1 / this.m;
+        this.inertia = this.m * ((2*this.comp[0].r)**2) / 12;
+        this.inv_inertia = this.inertia === 0 ? 0 : 1 / this.inertia;
+    }
+}
+
 class Box extends Body{
     constructor(x1, y1, x2, y2, w, m){
         super();
