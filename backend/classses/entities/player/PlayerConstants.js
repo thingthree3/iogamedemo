@@ -1,4 +1,4 @@
-import { deepFreeze } from "../../../utils/utils.js";
+import { deepFreeze } from "../../../../shared/utils.js";
 
 const Constants = deepFreeze({
     movementAcceleration: 1,

@@ -14,6 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.get('/', (req, res) => res.sendFile(join(__dirname, '/../../frontend/index.html')));
 app.use('/frontend', express.static(__dirname + '/../../frontend/'));
+app.use('/shared', express.static(__dirname + '/../../shared/'));
 
 const game = new Game(io);
 io.on("connection", onConnection(game));

@@ -1,5 +1,5 @@
 import Constants from "./PlayerConstants.js";
-import { Ball, Vector } from "../../../utils/physics.js";
+import { Ball, Vector } from "../../../../shared/physics.js";
 import Entity from "../Entity.js";
 
 export default class Player extends Entity {

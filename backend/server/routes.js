@@ -23,19 +23,23 @@ export default (game) => {
          */
         console.log(`new connection. id: ${socket.id}, ip: ${socket.handshake.address}`);
         socket.id = Math.random();
-        socket.emit("id", {
-            id: socket.id
-        });
+        socket.emit("id", { id: socket.id });
         const player = new Player(socket);
         // kick player if not verified after 30 seconds
-        const kickPlayerTimeoutID = setTimeout(game.disconnectSocket, 30000, player.socket);
+        const kickPlayerTimeoutID = setTimeout(player.disconnect, 30000);
         game.addPlayer(player);
 
         // socket.handshake.address
         socket.on("disconnect", function() {
         });
-        
-        socket.on("verify", () => clearTimeout(kickPlayerTimeoutID));
+        socket.on("verify", id => {
+            const thisPlayer = game.players.find(player => player.id === id);
+            if(!thisPlayer) {
+                socket.emit("reload");
+                player.disconnect();
+            }
+            clearTimeout(kickPlayerTimeoutID);
+        });
 
         socket.on("keyEvent", data => player.setMovementKey(data));
         socket.on("PositionUpdate", 

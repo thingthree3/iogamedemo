@@ -1,5 +1,5 @@
-import { Body } from "../../utils/physics.js";
-import LinkedList from "../../utils/LinkedList.js";
+import { Body } from "../../../shared/physics.js";
+import LinkedList from "../../../shared/LinkedList.js";
 
 /**@abstract */
 export default class Entity {

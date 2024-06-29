@@ -1,7 +1,7 @@
 import Player from "./entities/player/Player.js";
-import { Body, CollData, collide } from "../utils/physics.js";
+import { Body, CollData, collide } from "../../shared/physics.js";
 import { playerToData, filterAndUpdatePlayers } from "../utils/playerUtils.js";
-import LinkedList from "../utils/LinkedList.js";
+import LinkedList from "../../shared/LinkedList.js";
 import Entity from "./entities/Entity.js";
 // import PhysicsEngine from "./physicsEngine.js";
 
@@ -32,11 +32,7 @@ export default class Game {
   addPlayer(player) {
       this.players.add(player);
   }
-
-  disconnectSocket(socket) {
-      // delete this.SOCKET_LIST[socket.id];
-      // delete this.SOCKET_ACTIVITY[socket.id];
-  }
+  
   // getPhysicsEngine() {
   //   return this.#engine;
   // }
