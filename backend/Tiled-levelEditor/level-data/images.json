@@ -2,7 +2,7 @@
     "data": [
         {
             "name": "background",
-            "filename": "https://raw.githubusercontent.com/thingthree3/iogamedemo/main/backend/Tiled-levelEditor/level-data/demoLevel.png",
+            "filename": "https://raw.githubusercontent.com/thingthree3/iogamedemo/main/backend/Tiled-levelEditor/level-data/demoLevel.png"
         }
     ]
 }
