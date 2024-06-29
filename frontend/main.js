@@ -1,5 +1,6 @@
 import render from "./render.js";
 import createRoutes from "./routes.js";
+import registerNavigator from "./navigator.js";
 import { loadImages } from "./utils.js";
 import Game from "./Game.js";
 
@@ -35,7 +36,7 @@ const renderLoop = function(timeStamp) {
     render(ctx, game, deltatime);
     requestAnimationFrame(renderLoop);
 }
-
+await fetch("")
 // make sure the window and dom is ready
 const startGameCondition1 = new Promise(res => window.addEventListener("load", () => res()));
 // load all necesarry game images
