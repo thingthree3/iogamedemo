@@ -6,6 +6,7 @@ const loadImages = async function(){
     if(!response.ok)
         throw new Error(response.statusText);
     const json = await response.json();
+    /**`@type {{[key: string]: HTMLImageElement}} */
     const loadedImageData = {};
     console.log(json)
     await Promise.allSettled(json.map(imageData => {

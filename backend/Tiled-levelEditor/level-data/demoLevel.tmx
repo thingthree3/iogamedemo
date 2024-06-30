@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="52">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="76">
+ <editorsettings>
+  <export target="../demoLevelpp.tmj" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" name="poooops" tilewidth="64" tileheight="64" tilecount="540" columns="27">
   <image source="../tilesets/tilesheet_complete.png" width="1728" height="1280"/>
  </tileset>
@@ -115,17 +118,26 @@
  <objectgroup id="12" name="entities">
   <object id="35" gid="451" x="896" y="1216" width="64" height="64"/>
   <object id="38" type="small_tv" gid="537" x="960" y="1024" width="64" height="64" rotation="180"/>
-  <object id="39" gid="541" x="128" y="384" width="128" height="128"/>
-  <object id="40" gid="542" x="1024" y="384" width="128" height="128"/>
+  <object id="39" name="Tree1" type="circle" gid="541" x="128" y="384" width="128" height="128">
+   <properties>
+    <property name="radius" type="float" value="45"/>
+   </properties>
+  </object>
+  <object id="40" name="Tree2" type="circle" gid="542" x="1024" y="384" width="128" height="130">
+   <properties>
+    <property name="radius" type="float" value="45"/>
+   </properties>
+  </object>
   <object id="41" gid="545" x="448" y="1216" width="192" height="64"/>
-  <object id="42" gid="543" x="576.576" y="833.178" width="128" height="64" rotation="180"/>
-  <object id="43" gid="183" x="64" y="320" width="64" height="64"/>
-  <object id="44" gid="183" x="128" y="448" width="64" height="64"/>
-  <object id="45" gid="235" x="192" y="256" width="64" height="64"/>
-  <object id="46" gid="235" x="256" y="320" width="64" height="64"/>
-  <object id="47" gid="186" x="1088" y="448" width="64" height="64"/>
-  <object id="48" gid="186" x="1152" y="320" width="64" height="64"/>
-  <object id="49" gid="236" x="1024" y="256" width="64" height="64"/>
-  <object id="51" gid="236" x="960" y="320" width="64" height="64"/>
+  <object id="42" name="tv" type="rectangle" gid="1073742367" x="448" y="896" width="128" height="64"/>
+  <object id="43" name="mediumTree1" gid="183" x="64" y="320" width="64" height="64"/>
+  <object id="45" name="smallTree1" type="circle" gid="235" x="192" y="256" width="64" height="64"/>
+  <object id="48" name="mediumTree2" gid="186" x="1152" y="320" width="64" height="64"/>
+  <object id="61" name="smallTree2" type="circle" gid="236" x="1024" y="256" width="64" height="64"/>
+  <object id="63" name="mediumTree2" gid="186" x="1088" y="448" width="64" height="64"/>
+  <object id="64" name="smallTree2" type="circle" gid="236" x="960" y="320" width="64" height="64"/>
+  <object id="65" name="smallTree1" type="circle" gid="235" x="256" y="320" width="64" height="64"/>
+  <object id="67" name="mediumTree1" gid="183" x="128" y="448" width="64" height="64"/>
+  <object id="68" x="465.667" y="856.727" width="93.1515" height="12.6061"/>
  </objectgroup>
 </map>

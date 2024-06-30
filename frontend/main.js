@@ -1,5 +1,5 @@
 import createRoutes from "./routes.js";
-import registerNavigator from "./navigator.js";
+import registerNavigator from "./serviceWorker.js";
 import { loadImages } from "./utils.js";
 import Game from "./Game.js";
 
@@ -39,9 +39,12 @@ const renderLoop = function(timeStamp) {
 // make sure the window and dom is ready
 const startGameCondition1 = new Promise(res => window.addEventListener("load", () => res()));
 // load all necesarry game images
-const startGameCondition2 = new Promise(res => loadImages().then(imageData => {
-    game.imageData = imageData;
-    res();
+const startGameCondition2 = new Promise(res => loadImages().then(
+    /**@param {{[key: string]: HTMLImageElement}} */
+    imageData => {
+        registerNavigator(Object.keys(imageData));
+        game.imageData = imageData;
+        res();
 })); // loadImages();
 // start game once all conditions are fulfilled
 Promise.all([startGameCondition1, startGameCondition2]).then(() => {

@@ -12,7 +12,7 @@ export default function createRoutes(game){
         }
         console.log("Your id is " + data.id);
         game.player.id = data.id;
-        setTimeout(() => game.player.socket.emit("verify"), 2000);
+        setTimeout(() => game.player.socket.emit("verify", data.id), 2000);
     });
     
     game.player.socket.on("positionUpdate", entities => game.update(entities));

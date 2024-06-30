@@ -28,8 +28,8 @@ export default class Player extends Entity {
     }
 
     disconnect(){
-        console.log(`Player ${this.socket.id} disconnected`);
-        this.socket.disconnect();
+        // console.log(`Player ${this.socket.id} disconnected`);
+        this.socket?.disconnect();
         this.isMarkedForDeletion = true;
     }
 

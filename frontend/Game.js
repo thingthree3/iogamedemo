@@ -70,6 +70,7 @@ export default class Game {
         //     this.offsetX += this.player.velocity.x;
         // }
 
+        // bad code ik :<
         if((this.player.y + Constants.playerConstants.radius - this.offsetY >= this.screenHeight - this.#scrollAreaHeight)){
             const offsetMovementSpeed = Math.abs(this.player.velocity.y);
             this.offsetY -= ((this.screenHeight - this.#scrollAreaHeight) -(this.player.y + Constants.playerConstants.radius - this.offsetY)) * 0.02 * (offsetMovementSpeed > 5 ? offsetMovementSpeed : 5);
@@ -95,7 +96,6 @@ export default class Game {
      */
     update(entities){
         this.entities = entities;
-        // const player = this.entities.find(e => e.id === this.player.socket.id);
         this.player.update(entities);
         this.#scrollWindow();
     }

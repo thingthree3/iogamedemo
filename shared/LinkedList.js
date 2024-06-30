@@ -94,7 +94,7 @@ export default class LinkedList {
     /**
      * @param {LinkedList} head 
      * @param {(value: T, index: number) => boolean} callbackfn 
-     * @returns {T | null}
+     * @returns {T | undefined}
      */
     find(callbackfn){
         let prevNode = this.#head, index = 0;
@@ -102,7 +102,7 @@ export default class LinkedList {
             prevNode = prevNode.next;
             index++;
         }
-        return prevNode.next.value ?? null;
+        return prevNode.next?.value;
     }
 
     /**

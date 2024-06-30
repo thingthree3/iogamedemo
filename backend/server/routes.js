@@ -27,16 +27,17 @@ export default (game) => {
         const player = new Player(socket);
         // kick player if not verified after 30 seconds
         const kickPlayerTimeoutID = setTimeout(player.disconnect, 30000);
-        game.addPlayer(player);
 
         // socket.handshake.address
         socket.on("disconnect", function() {
         });
         socket.on("verify", id => {
-            const thisPlayer = game.players.find(player => player.id === id);
-            if(!thisPlayer) {
+            if(!player.socket.id === id) {
                 socket.emit("reload");
                 player.disconnect();
+            }else{
+                console.log(`player ${id} verified`);
+                game.addPlayer(player);
             }
             clearTimeout(kickPlayerTimeoutID);
         });
