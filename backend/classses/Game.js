@@ -1,13 +1,16 @@
 import Player from "./entities/player/Player.js";
-import { Body, CollData, collide } from "../../shared/physics.js";
+import {  CollData, collide } from "../../shared/physics.js";
 import { playerToData, filterAndUpdatePlayers } from "../utils/playerUtils.js";
+import { entitysToData } from "../utils/utils.js";
 import LinkedList from "../../shared/LinkedList.js";
 import Entity from "./entities/Entity.js";
-// import PhysicsEngine from "./physicsEngine.js";
+import LevelLoader from "./LevelLoader.js";
 
 export default class Game {
   /**@type {LinkedList<Player>} */
   players = new LinkedList();
+  /**@type {LinkedList<Entity>} */
+  entities = new LinkedList();
   /**@type {SocketIO.Server} */
   server = null;
   // #engine = new PhysicsEngine();
@@ -19,7 +22,7 @@ export default class Game {
     this.server = server;
     this.lastTime = Date.now();
     this.accumulator = 0;
-    this.fps = 1000 / 90; // 90 updates per second
+    this.fps = 1000 / 60; // 60 updates per second
 
     // Game states
     this.gameStates = Object.freeze({
@@ -27,22 +30,29 @@ export default class Game {
     });
   
     this.running = false;
+    this.levelLoader = new LevelLoader(this);
+    this.levelLoader.loadLevel("./backend/level-data/demoLevel.tmx")
+  }
+
+  addEntity(entity) {
+    this.entities.add(entity);
   }
 
   addPlayer(player) {
       this.players.add(player);
   }
-  
-  // getPhysicsEngine() {
-  //   return this.#engine;
-  // }
+
 
   /**
    * @description 
    * @returns {LinkedList<Entity>}
    */
   #linkCollidableEntities(){
-    return LinkedList.link(this.players, Entity.Entities);
+    return LinkedList.link(this.players, this.entities);
+  }
+
+  #unlinkCollidableEntities(){
+    this.players.unlink();
   }
 
   loop() {
@@ -62,18 +72,40 @@ export default class Game {
     setTimeout(() => this.loop(), this.fps);
   }
 
+  start() {
+    this.running = true;
+    this.loop();
+  }
+
+  stop() {
+    this.running = false;
+  }
+
   update(deltaTime) {
     this.#updatePlayers();
     this.#updatePhysics();
+    
+    // ----- broadcast data to clients -----
+
+    // broadcast clients' data to all clients
+    this.server.emit('playersPositionUpdate', this.players.toArray(playerToData));
+    this.server.emit("staticEntitiesPositionUpdate", this.entities.toArray(entitysToData));
   }
 
   #updatePhysics() {
-    // const entities = this.#linkCollidableEntities();
-    this.players.forEachNode(node => {
+    this.#calculateCollisions(this.#linkCollidableEntities());
+    this.#unlinkCollidableEntities();
+  }
+
+  /**
+   * @param {LinkedList<Entity>} collidables 
+   */
+  #calculateCollisions(collidables) {
+    collidables.forEachNode(node => {
       LinkedList.forEachNode(node, node2 => {
-          if(collide(node.value.hitbox, node2.value.hitbox)){
-            let bestSat = collide(node.value.hitbox, node2.value.hitbox);
-            CollData.Collisions.add(new CollData(node.value.hitbox, node2.value.hitbox, bestSat.axis, bestSat.pen, bestSat.vertex));
+        const collision = collide(node.value.hitbox, node2.value.hitbox);
+          if(collision){
+            CollData.Collisions.add(new CollData(node.value.hitbox, node2.value.hitbox, collision.axis, collision.pen, collision.vertex));
           }
       });
     });
@@ -89,22 +121,5 @@ export default class Game {
   #updatePlayers(){
     // use filter instead of forEach to update and remove players at the same time
     this.players.filter(filterAndUpdatePlayers);
-
-    // broadcast data to clients, update this for mutiple servers, ei atlana europe
-    const data = this.players.toArray(playerToData);
-    this.server.emit('positionUpdate', data);
-  }
-
-  // removePlayer(player) {
-  //   this.#players.findAndDelete(player, player => player.socket.id === player.socket.id);
-  // }
-
-  start() {
-    this.running = true;
-    this.loop();
-  }
-
-  stop() {
-    this.running = false;
   }
 }

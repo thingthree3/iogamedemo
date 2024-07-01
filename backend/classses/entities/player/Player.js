@@ -19,11 +19,13 @@ export default class Player extends Entity {
 
     #afkKickTimeout = 0;
     /**
-     * @param {SocketIO.Socket} socket 
+     * @param {SocketIO.Socket} socket
+     * @param {number} x
+     * @param {number} y 
      */
-    constructor(socket) {
+    constructor(socket, x, y) {
         // this.maxHp = 100;
-        super(new Ball(200, 200, 20, 1));
+        super(new Ball(x, y, 20, 3), 0);
         this.socket = socket;
     }
 

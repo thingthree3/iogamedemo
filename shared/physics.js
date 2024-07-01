@@ -92,7 +92,7 @@ class Line{
 
 }
 
-class Circle{
+export class Circle{
     constructor(x, y, r){
         this.vertex = [];
         this.pos = new Vector(x, y);
@@ -206,6 +206,7 @@ export class Ball extends Body{
         this.comp = [new Circle(x, y, r)];
         this.m = m;
         this.friction = 0.1;
+        this.maxSpeed = 30;
         if (this.m === 0){
             this.inv_m = 0;
         } else {

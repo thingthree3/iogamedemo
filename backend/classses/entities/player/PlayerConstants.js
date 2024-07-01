@@ -1,7 +1,7 @@
 import { deepFreeze } from "../../../../shared/utils.js";
 
 const Constants = deepFreeze({
-    movementAcceleration: 1,
+    movementAcceleration: 0.1,
     movementKeyMap: {
         ArrowDown: "down",
         ArrowLeft: "left",

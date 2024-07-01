@@ -1,7 +1,6 @@
 import pkg from 'colors/safe.js';
 import dotenv from 'dotenv';
 import { game, server } from "./backend/server/server.js"
-import tmx from "./backend/node-tmx-parser/index.js";
 
 dotenv.config();
 const debug = process.env.USER?.toLowerCase() === 'dev';
@@ -13,16 +12,6 @@ server.listen(port, () => {
   console.log(`server running at http://localhost:${port}`);
   game.start();
 });
-
-// tmx.parseFile("./backend/Tiled-levelEditor/level-data/demoLevel.tmx", function(err, map) {
-//   if (err) {
-//     if(debug)
-//         throw err;
-//     console.log(err);
-//     return;
-//   }
-//     console.log(map.layers.find(layer => layer.name === "entities"));
-// });
 
 // ---------- Commands ----------
 process.stdin.resume();

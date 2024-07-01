@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --inspect --trace-warnings --watch-path=./ --inspect-brk index.js",
+    "dev": "node --inspect --trace-warnings --watch-path=./backend --watch-path=./frontend --watch-path=./shared --inspect-brk index.js",
     "start": "node index.js"
   },
   "type": "module",

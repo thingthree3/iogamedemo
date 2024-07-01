@@ -22,17 +22,22 @@ export default (game) => {
          * we delete token whene 
          */
         console.log(`new connection. id: ${socket.id}, ip: ${socket.handshake.address}`);
-        socket.id = Math.random();
+        // socket.id = Math.random();
         socket.emit("id", { id: socket.id });
-        const player = new Player(socket);
+        const player = new Player(socket, 1000, 1000);
         // kick player if not verified after 30 seconds
-        const kickPlayerTimeoutID = setTimeout(player.disconnect, 30000);
+        const kickPlayerTimeoutID = setTimeout(() => {
+            // console.log("kicking player" + socket.id);
+            // socket.emit("reload");
+            // player.disconnect()
+        }, 10000);
 
         // socket.handshake.address
         socket.on("disconnect", function() {
         });
         socket.on("verify", id => {
             if(!player.socket.id === id) {
+                console.log("player verification failed");
                 socket.emit("reload");
                 player.disconnect();
             }else{
