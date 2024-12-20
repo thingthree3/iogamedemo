@@ -1,4 +1,4 @@
-import LinkedList from "./LinkedList.js";
+import LinkedList from "./utils/LinkedList.js";
 const BODIES = [];
 const COLLISIONS = [];
 
@@ -80,11 +80,9 @@ class Matrix{
 }
 
 //classes storing the primitive shapes: Line, Circle, Rectangle, Triangle
-class Line{
+export class Line{
     constructor(x0, y0, x1, y1){
-        this.vertex = [];
-        this.vertex[0] = new Vector(x0, y0);
-        this.vertex[1] = new Vector(x1, y1);
+        this.vertex = [new Vector(x0, y0), new Vector(x1, y1)];
         this.dir = this.vertex[1].subtr(this.vertex[0]).unit();
         this.mag = this.vertex[1].subtr(this.vertex[0]).mag();
         this.pos = new Vector((this.vertex[0].x+this.vertex[1].x)/2, (this.vertex[0].y+this.vertex[1].y)/2);
@@ -100,18 +98,18 @@ export class Circle{
     }
 }
 
-class Rectangle{
+export class Rectangle{
     constructor(x1, y1, x2, y2, w){
         this.vertex = [];
         this.vertex[0] = new Vector(x1, y1);
         this.vertex[1] = new Vector(x2, y2);
         this.dir = this.vertex[1].subtr(this.vertex[0]).unit();
         this.refDir = this.vertex[1].subtr(this.vertex[0]).unit();
-        this.length = this.vertex[1].subtr(this.vertex[0]).mag();
+        this.height = this.vertex[1].subtr(this.vertex[0]).mag();
         this.width = w;
         this.vertex[2] = this.vertex[1].add(this.dir.normal().mult(this.width));
-        this.vertex[3] = this.vertex[2].add(this.dir.normal().mult(-this.length));
-        this.pos = this.vertex[0].add(this.dir.mult(this.length/2)).add(this.dir.normal().mult(this.width/2));
+        this.vertex[3] = this.vertex[2].add(this.dir.normal().mult(-this.height));
+        this.pos = this.vertex[0].add(this.dir.mult(this.height/2)).add(this.dir.normal().mult(this.width/2));
         this.angle = 0;
         this.rotMat = new Matrix(2,2);
     }
@@ -119,10 +117,10 @@ class Rectangle{
     getVertices(angle){
         this.rotMat.rotMx22(angle);
         this.dir = this.rotMat.multiplyVec(this.refDir);
-        this.vertex[0] = this.pos.add(this.dir.mult(-this.length/2)).add(this.dir.normal().mult(this.width/2));
-        this.vertex[1] = this.pos.add(this.dir.mult(-this.length/2)).add(this.dir.normal().mult(-this.width/2));
-        this.vertex[2] = this.pos.add(this.dir.mult(this.length/2)).add(this.dir.normal().mult(-this.width/2));
-        this.vertex[3] = this.pos.add(this.dir.mult(this.length/2)).add(this.dir.normal().mult(this.width/2));
+        this.vertex[0] = this.pos.add(this.dir.mult(-this.height/2)).add(this.dir.normal().mult(this.width/2));
+        this.vertex[1] = this.pos.add(this.dir.mult(-this.height/2)).add(this.dir.normal().mult(-this.width/2));
+        this.vertex[2] = this.pos.add(this.dir.mult(this.height/2)).add(this.dir.normal().mult(-this.width/2));
+        this.vertex[3] = this.pos.add(this.dir.mult(this.height/2)).add(this.dir.normal().mult(this.width/2));
     }
 }
 
@@ -281,18 +279,19 @@ class Capsule extends Body{
     }
 }
 
-class Box extends Body{
+export class Box extends Body{
     constructor(x1, y1, x2, y2, w, m){
         super();
         this.comp = [new Rectangle(x1, y1, x2, y2, w)];
         this.pos = this.comp[0].pos;
+        this.dimensions = {width: x2 - x1, height: y2 - y1};
         this.m = m;
         if (this.m === 0){
             this.inv_m = 0;
         } else {
             this.inv_m = 1 / this.m;
         }
-        this.inertia = this.m * (this.comp[0].width**2 +this.comp[0].length**2) / 12;
+        this.inertia = this.m * (this.comp[0].width**2 +this.comp[0].height**2) / 12;
         if (this.m === 0){
             this.inv_inertia = 0;
         } else {
@@ -397,7 +396,7 @@ class Star extends Body{
    }
 }
 
-class Wall extends Body{
+export class Wall extends Body{
     constructor(x1, y1, x2, y2){
         super();
         this.comp = [new Line(x1, y1, x2, y2)];
@@ -448,11 +447,11 @@ export class CollData{
         let impulseVec = this.normal.mult(impulse);
 
         //3. Changing the velocities
-        this.o1.vel = this.o1.vel.add(impulseVec.mult(this.o1.inv_m));
-        this.o2.vel = this.o2.vel.add(impulseVec.mult(-this.o2.inv_m));
+        // this.o1.vel = this.o1.vel.add(impulseVec.mult(this.o1.inv_m));
+        // this.o2.vel = this.o2.vel.add(impulseVec.mult(-this.o2.inv_m));
 
-        this.o1.angVel += this.o1.inv_inertia * Vector.cross(collArm1, impulseVec);
-        this.o2.angVel -= this.o2.inv_inertia * Vector.cross(collArm2, impulseVec); 
+        // this.o1.angVel += this.o1.inv_inertia * Vector.cross(collArm1, impulseVec);
+        // this.o2.angVel -= this.o2.inv_inertia * Vector.cross(collArm2, impulseVec); 
     }
 }
 
@@ -666,18 +665,23 @@ export function collide(o1, o2){
         axis: null,
         vertex: null
     }
-    for(let o1comp=0; o1comp<o1.comp.length; o1comp++){
-        for(let o2comp=0; o2comp<o2.comp.length; o2comp++){
-            if(sat(o1.comp[o1comp], o2.comp[o2comp]).pen > bestSat.pen){
-                bestSat = sat(o1.comp[o1comp], o2.comp[o2comp]);
-            }
-        }
+    try{
+        for(let o1comp=0; o1comp<o1.length; o1comp++)
+            for(let o2comp=0; o2comp<o2.length; o2comp++){
+                const mtv = sat(o1[o1comp], o2[o2comp]);
+                if(mtv.pen > bestSat.pen)
+                    bestSat = mtv;
+            };
+    }catch(e){
+        console.log(o1, o2);
+        console.log(o1[0] instanceof Circle, o1[0].constructor.name, o2[0] instanceof Circle, o2[0].constructor.name);
+        throw e;
     }
-    if (bestSat.pen !== null){
+        
+    
+    if (bestSat.pen !== null)
         return bestSat;
-    } else {
-        return false;
-    }
+    return false;
 }
 
 function userInteraction(){
@@ -712,6 +716,41 @@ function physicsLoop(timestamp) {
     });
 }
 
+/**
+ * @param {Circle} circle
+ * @param {Line} line
+ */
+export function collisionCircleLine(circle, line){ 
+
+    const side1 = Math.sqrt(Math.pow(circle.pos.x - line.vertex[0].x,2) + Math.pow(circle.pos.y - line.vertex[0].y,2)); // Thats the pythagoras theoram If I can spell it right
+
+    const side2 = Math.sqrt(Math.pow(circle.pos.x - line.vertex[1].x,2) + Math.pow(circle.pos.y - line.vertex[1].y,2));
+
+    const base = Math.sqrt(Math.pow(line.vertex[1].x - line.vertex[0].x,2) + Math.pow(line.vertex[1].y - line.vertex[0].y,2));
+
+    if(circle.r > side1 || circle.r > side2)
+        return true;
+
+    const angle1 = Math.atan2( line.vertex[1].x - line.vertex[0].x, line.vertex[1].y - line.vertex[0].y ) - Math.atan2( circle.pos.x - line.vertex[0].x, circle.pos.y - line.vertex[0].y ); // Some complicated Math
+
+    const angle2 = Math.atan2( line.vertex[0].x - line.vertex[1].x, line.vertex[0].y - line.vertex[1].y ) - Math.atan2( circle.pos.x - line.vertex[1].x, circle.pos.y - line.vertex[1].y ); // Some complicated Math again
+
+    if(angle1 > Math.PI / 2 || angle2 > Math.PI / 2) // Making sure if any angle is an obtuse one and Math.PI / 2 = 90 deg
+        return false;
+
+
+        // Now if none are true then
+
+        const semiperimeter = (side1 + side2 + base) / 2;
+
+        const areaOfTriangle = Math.sqrt( semiperimeter * (semiperimeter - side1) * (semiperimeter - side2) * (semiperimeter - base) ); // Heron's formula for the area
+
+        const height = 2*areaOfTriangle/base;
+
+        return height < circle.r;
+
+}
+
 //If anything else (text, data...) needs to be rendered on the canvas
 function userInterface(){};
 
@@ -734,4 +773,34 @@ function mainLoop(){
 function renderOnly(){
     renderLoop();
     requestAnimationFrame(renderOnly);
+}
+
+/**
+ * 
+ * @param {Circle} circle 
+ * @param {Rectangle} rectangle 
+ * @returns {boolean}
+ */
+// export function checkRectangleAndCircleCollision ( circle, rectangle ) {
+
+//     // Rotate circle's center point back
+//     const rect_centerX = rectangle.vertex[1].x + rectangle.height / 2;
+//     const rect_centerY = rectangle.vertex[1].y + rectangle.width / 2;
+
+//     const cx = (Math.cos(rectangle.angle) * (circle.pos.x - rect_centerX)) - (Math.sin(rectangle.angle) * (circle.pos.y - rect_centerY)) + rect_centerX;
+//     const cy = (Math.sin(rectangle.angle) * (circle.pos.x - rect_centerX)) + (Math.cos(rectangle.angle) * (circle.pos.y - rect_centerY)) + rect_centerY;
+
+//     // Closest point
+//     // Find the unrotated closest x and y point from center of unrotated circle
+//     const   x = (cx < rectangle.pos.x ? rectangle.pos.x : (cx > rectangle.pos.x + rectangle.width ? rectangle.pos.x + rectangle.width : cx)),
+//             y = (cy < rectangle.pos.y ? rectangle.pos.y : (cy > rectangle.pos.y + rectangle.height ? rectangle.pos.y + rectangle.height : cy));
+
+//             // Determine collision
+    
+//     return findDistance(cx, cy, x, y) < circle.r;
+// }
+
+
+export function findDistance (x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2));
 }

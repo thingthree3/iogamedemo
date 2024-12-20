@@ -1,0 +1,17 @@
+{
+    "tools": {
+        "swords": {
+            "hitbox": {"type": "rectangle", "width": 15, "height": 35},
+            "hitboxImageCenterOffsetRotation": 4.71238898038469,
+            "hitboxImageOffsetDistance": 0,
+            "offsetRotation": 1.5707963267948966,
+            "orbitalDistance": 75,
+            "rotationalVelocity": 0.3,
+            "maxRotation": -3.8,
+            "maxOrbitalDistance": -1.9,
+            "orbitationalRotationVelocity": 0.15,
+            "type": "Tool",
+            "useCooldown": 25
+        }
+    }
+}

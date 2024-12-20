@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="64" tileheight="64" infinite="0" nextlayerid="14" nextobjectid="92">
  <tileset firstgid="1" name="poooops" tilewidth="64" tileheight="64" tilecount="540" columns="27">
-  <image source="../../frontend/assets/tilesheet_complete.png" width="1728" height="1280"/>
+  <image source="../../../frontend/assets/tilesheet_complete.png" width="1728" height="1280"/>
  </tileset>
  <tileset firstgid="541" name="entities" tilewidth="192" tileheight="128" tilecount="6" columns="0" objectalignment="topleft">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
-   <image width="128" height="128" source="../../frontend/assets/tree1.png"/>
+   <image width="128" height="128" source="../../../frontend/assets/tree1.png"/>
   </tile>
   <tile id="1">
-   <image width="128" height="128" source="../../frontend/assets/tree2.png"/>
+   <image width="128" height="128" source="../../../frontend/assets/tree2.png"/>
   </tile>
   <tile id="2">
-   <image width="128" height="64" source="../../frontend/assets/tv.png"/>
+   <image width="128" height="64" source="../../../frontend/assets/tv.png"/>
   </tile>
   <tile id="3">
-   <image width="192" height="64" source="../../frontend/assets/couch1.png"/>
+   <image width="192" height="64" source="../../../frontend/assets/couch1.png"/>
   </tile>
   <tile id="4">
-   <image width="192" height="64" source="../../frontend/assets/couch2.png"/>
+   <image width="192" height="64" source="../../../frontend/assets/couch2.png"/>
   </tile>
   <tile id="5">
-   <image width="192" height="64" source="../../frontend/assets/couch3.png"/>
+   <image width="192" height="64" source="../../../frontend/assets/couch3.png"/>
   </tile>
  </tileset>
  <layer id="1" name="floor1" width="80" height="80">

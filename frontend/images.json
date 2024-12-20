@@ -1,6 +1,16 @@
-[
-    {
-        "name": "background",
-        "src": "https://raw.githubusercontent.com/thingthree3/iogamedemo/main/backend/Tiled-levelEditor/level-data/demoLevel.png"
-    }   
-]
+{
+        "background": {
+                "type": "singular",
+                "image": "https://raw.githubusercontent.com/thingthree3/iogamedemo/main/frontend/assets/demoLevel.png"
+        },
+        "player": {
+                "type": "singular",
+                "image": "https://raw.githubusercontent.com/thingthree3/iogamedemo/main/frontend/assets/soldier1_stand.png"
+        },
+        "tools": {
+                "type": "spriteSheet",
+                "image": "https://raw.githubusercontent.com/thingthree3/iogamedemo/main/frontend/assets/weapons_.png",
+                "framesX": 5,
+                "framesY": 5
+        }
+}

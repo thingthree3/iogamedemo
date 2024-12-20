@@ -1,18 +1,21 @@
 import { Vector } from "../shared/physics.js";
-
+import Game from "./Game.js";
 export default class Player {
-    isWritting = false;
+    /**@type {Game} */
+    game;
+    isTyping = false;
     id = null;
     socket = io("http://localhost:3000");
     #x = 0;
     #y = 0;
     velocity = new Vector(0, 0);
-    mousePosToSend = {
-        x: 0,
-        y: 0,
+    mousePosition = {x: 0, y: 0};
+    constructor(game){
+        this.game = game;
     }
-    constructor(){
 
+    get rotation(){
+        return Math.atan2(this.mousePosition.y - this.y + this.game.offsetY, this.mousePosition.x - this.x + this.game.offsetX);
     }
 
     get x(){
@@ -52,7 +55,8 @@ export default class Player {
     update(entities){
         // console.log(this.velocity);
         const myself = entities.find(e => e.id === this.id);
-        if(myself)
+        if(myself){
             this.updatePosition(myself.x, myself.y);
+        }
     }
 }

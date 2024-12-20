@@ -1,0 +1,25 @@
+{
+    "circle":{
+        "Tree1": {
+            "radius": 40
+        },
+        "mediumTree1": {
+            "radius": 24
+        },
+        "smallTree1": {
+            "radius": 12
+        },
+        "Tree2": {
+            "radius": 40
+        },
+        "mediumTree2": {
+            "radius": 24
+        },
+        "smallTree2": {
+            "radius": 12
+        }
+    },
+    "resourceEntities": {
+        "Tree":{}
+    }
+}

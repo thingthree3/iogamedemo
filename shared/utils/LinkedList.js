@@ -109,34 +109,10 @@ export default class LinkedList {
      * @param {(value: T, index: number) => void} callbackfn 
      * @returns {void}
      */
-    forEach(callbackfn){
+    forEachValue(callbackfn){
         let prevNode = this.#head, index = 0;
         while(prevNode.next){
             callbackfn(prevNode.next.value, index);
-            prevNode = prevNode.next;
-            index++;
-        }
-    }
-
-    /**
-     * @param {(value: Node<T>, index: number) => void} callbackfn 
-     * @returns {void}
-     */
-    forEachNode(callbackfn){
-        LinkedList.forEachNode(this.#head, callbackfn);
-    }
-
-    /**
-     * @template T
-     * @param {Node<T>} head
-     * @param {(value: Node<T>, index: number) => void} callbackfn 
-     * @returns {void}
-     */
-    static forEachNode(head, callbackfn){
-        if(!head) return;
-        let prevNode = head, index = 0;
-        while(prevNode.next){
-            callbackfn(prevNode.next, index);
             prevNode = prevNode.next;
             index++;
         }
@@ -196,6 +172,17 @@ export default class LinkedList {
     unlink(){
         this.#tail.next = null;
     }
+
+    [Symbol.iterator](){
+        let prevNode = this.#head;
+        return {
+            /** @returns {{value: Node<T>, done: boolean}} */
+            next(){
+                const value = prevNode.next;
+                prevNode = prevNode.next;
+                return {value, done: !value?.next};
+            }};
+    }
 }
 /**
  * @template T
@@ -212,5 +199,16 @@ class Node {
     constructor(value, next = null){
         this.value = value;
         this.next = next;
+    }
+
+    [Symbol.iterator](){
+        let node = this;
+        return {
+            /** @returns {{value: T, done: boolean}} */
+            next(){
+                const value = node?.value;
+                node = node?.next;
+                return {value, done: !value};
+            }};
     }
 }
